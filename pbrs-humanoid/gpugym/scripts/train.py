@@ -64,13 +64,15 @@ def train(args):
 
     ppo_runner, train_cfg = task_registry.make_alg_runner(env=env, name=args.task, args=args)
 
-    if args.wandb_name:
-        experiment_name = args.wandb_name
-    else:
-        experiment_name = f'{args.task}'
+    # if args.wandb_name:
+    #     experiment_name = args.wandb_name
+    # else:
+    #     experiment_name = train_cfg.runner.experiment_name
 
-    log_root = os.path.join(LEGGED_GYM_ROOT_DIR, 'logs', train_cfg.runner.experiment_name)
-    log_dir = os.path.join(log_root, datetime.now().strftime('%b%d_%H-%M-%S') + '_' + train_cfg.runner.run_name)
+    # log_root = os.path.join(LEGGED_GYM_ROOT_DIR, 'logs', experiment_name)
+    # os.makedirs(log_root, exist_ok=True)
+
+    # log_dir = os.path.join(log_root, datetime.now().strftime('%b%d_%H-%M-%S') + '_' + train_cfg.runner.run_name)
 
     # Check if we specified that we want to use wandb
     do_wandb = train_cfg.do_wandb if hasattr(train_cfg, 'do_wandb') else False
@@ -86,7 +88,7 @@ def train(args):
                    entity=args.wandb_entity,
                 #    group=args.wandb_group,
                    config=wandb.config,
-                   name=experiment_name)
+                   name=args.wandb_name)
 
         ppo_runner.configure_wandb(wandb)
         ppo_runner.configure_learn(train_cfg.runner.max_iterations, True)
