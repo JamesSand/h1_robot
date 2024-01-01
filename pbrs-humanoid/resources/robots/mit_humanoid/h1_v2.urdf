@@ -28,7 +28,7 @@
           <material
               name="">
               <color
-              rgba="0.1 0.1 0.1 1" />
+              rgba="0.8 0.8 0.8 1" />
           </material>
         </visual>
 
@@ -72,7 +72,7 @@
         <material
             name="">
             <color
-            rgba="0.1 0.1 0.1 1" />
+            rgba="0.8 0.8 0.8 1" />
         </material>
         </visual>
         <!-- use simple geometry for hip_yaw_link -->
@@ -136,7 +136,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
@@ -200,7 +200,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
@@ -263,7 +263,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
@@ -329,11 +329,11 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
-    
+
     <collision>
       <origin
         xyz="0 0 0"
@@ -398,7 +398,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <!-- use simple geometry for hip_yaw_link -->
@@ -460,7 +460,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -522,7 +522,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -584,7 +584,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -646,7 +646,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -713,7 +713,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     
@@ -777,7 +777,7 @@
       <material
         name="">
         <!-- <color
-          rgba="0.1 0.1 0.1 1" /> -->
+          rgba="0.8 0.8 0.8 1" /> -->
 
           <color rgba="1.0 1.0 1.0 1" />
       </material>
@@ -838,7 +838,7 @@
       <material
         name="">
         <!-- <color
-          rgba="0.1 0.1 0.1 1" /> -->
+          rgba="0.8 0.8 0.8 1" /> -->
 
           <color rgba="1.0 1.0 1.0 1" />
       </material>
@@ -900,7 +900,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
@@ -961,7 +961,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
@@ -1026,7 +1026,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -1086,7 +1086,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
@@ -1146,7 +1146,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -1205,7 +1205,7 @@
       <material
         name="">
         <color
-          rgba="0.1 0.1 0.1 1" />
+          rgba="0.8 0.8 0.8 1" />
       </material>
     </visual>
 
