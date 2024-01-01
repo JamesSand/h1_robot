@@ -3,11 +3,11 @@
     <!-- center body start -->
     <link name="pelvis">
         <inertial>
-        <origin
-            xyz="-0.0002 4E-05 -0.04522"
-            rpy="0 0 0" />
-        <mass
-            value="5.39" />
+          <origin
+              xyz="-0.0002 4E-05 -0.04522"
+              rpy="0 0 0" />
+          <mass
+              value="5.39" />
         <inertia
             ixx="0.044582"
             ixy="8.7034E-05"
@@ -16,20 +16,22 @@
             iyz="4.021E-06"
             izz="0.049021" />
         </inertial>
+
         <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
-            <mesh
-            filename="meshes/pelvis.STL" />
-        </geometry>
-        <material
-            name="">
-            <color
-            rgba="0.1 0.1 0.1 1" />
-        </material>
+          <origin
+              xyz="0 0 0"
+              rpy="0 0 0" />
+          <geometry>
+              <mesh
+              filename="meshes/pelvis.STL" />
+          </geometry>
+          <material
+              name="">
+              <color
+              rgba="0.1 0.1 0.1 1" />
+          </material>
         </visual>
+
         <collision>
         <origin
             xyz="0 0 0"
@@ -692,6 +694,7 @@
         iyz="-0.00074582"
         izz="0.12785" />
     </inertial>
+
     <visual>
       <origin
         xyz="0 0 0"
@@ -706,6 +709,7 @@
           rgba="0.1 0.1 0.1 1" />
       </material>
     </visual>
+    
     <collision>
       <origin
         xyz="0 0 0"

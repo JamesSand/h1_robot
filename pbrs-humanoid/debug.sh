@@ -5,16 +5,25 @@ export CUDA_VISIBLE_DEVICES=1
 
 # python gpugym/scripts/train.py --task=pbrs:H1 --headless 
 
-python gpugym/scripts/train.py --task=pbrs:humanoid --headless 
+# # origin mit file
+# URDF_FILE=/home/shawn/local/szz/robot/h1_robot/pbrs-humanoid/resources/robots/mit_humanoid/mit_humanoid_fixed_arms.urdf
+
+
+# wo hand mit file
+URDF_FILE=/home/shawn/local/szz/robot/h1_robot/pbrs-humanoid/resources/robots/mit_humanoid/mit_v1.urdf
+
+# python gpugym/scripts/train.py --task=pbrs:humanoid --headless \
+#     --urdf_file $URDF_FILE
 
 
 
-    # --wandb_name "pbrs_test_run" \
-    # --wandb_project "pbrs_test" \
-    # --wandb_entity "shazhizhou0"
+# actual run
+RUN_NAME="pbrs_mit_v1_wo_hand"
+PROJ_NAME="pbrs"
 
-# export DISPLAY=localhost:10.0
-
-# pbrs play
-# python gpugym/scripts/play.py --task=pbrs:humanoid
-
+python gpugym/scripts/train.py --task=pbrs:humanoid --headless \
+    --seed 777 \
+    --urdf_file $URDF_FILE \
+    --wandb_name $RUN_NAME \
+    --wandb_project $PROJ_NAME \
+    --wandb_entity "shazhizhou0"

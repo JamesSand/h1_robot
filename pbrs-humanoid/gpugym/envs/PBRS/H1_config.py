@@ -235,10 +235,10 @@ class H1Cfg(LeggedRobotCfg):
         file = '{LEGGED_GYM_ROOT_DIR}'\
             '/resources/h1_robot_res/h1_v2.urdf'
 
-        print("-" * 50)
-        print("using urdf file")
-        print(file)
-        print("-" * 50)
+        # print("-" * 50)
+        # print("using urdf file")
+        # print(file)
+        # print("-" * 50)
 
         # file = '{LEGGED_GYM_ROOT_DIR}'\
         #     '/resources/robots/mit_humanoid/mit_humanoid_fixed_arms.urdf'

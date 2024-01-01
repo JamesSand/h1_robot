@@ -64,6 +64,10 @@ def update_class_from_dict(obj, dict):
     return
 
 def set_seed(seed):
+
+    # print(f"seed {seed}")
+    # breakpoint()
+
     if seed == -1:
         seed = np.random.randint(0, 10000)
     print("Setting seed: {}".format(seed))
@@ -130,6 +134,20 @@ def update_cfg_from_args(env_cfg, cfg_train, args):
         # num envs
         if args.num_envs is not None:
             env_cfg.env.num_envs = args.num_envs
+
+        # update urdf file path here
+        if args.urdf_file is not None:
+            print("-" * 50)
+            print("using urdf")
+            print(args.urdf_file)
+            print("-" * 50)
+
+            env_cfg.asset.file = args.urdf_file
+
+        if args.seed is not None:
+            env_cfg.seed = args.seed
+        
+
     if cfg_train is not None:
         if args.seed is not None:
             cfg_train.seed = args.seed
@@ -167,6 +185,10 @@ def get_args():
         {"name": "--wandb_project", "type": str, "help": "Enter the name of your project for better WandB tracking."},
         {"name": "--wandb_entity", "type": str, "help": "Enter your wandb entity username to track your experiment on your account."},
         {"name": "--wandb_group", "type": str, "default": "training_run", "help": "Enter the group name of the runs."},
+
+        # urdf file path
+        {"name": "--urdf_file", "type": str, "help": "urdf file path"},
+
         {"name": "--reward_scale", "type": float, "help": "value to override reward scale with (which reward hard-coded in train.py)"}, # ! hacky AF
         {"name": "--pbrs", "type": int, "help": "pbrs or not (1, 0))"}, # ! hacky AF
     ]

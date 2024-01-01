@@ -38,6 +38,8 @@ from .PBRS.humanoid_config import HumanoidCfg, HumanoidCfgPPO
 from .PBRS.H1 import H1
 from .PBRS.H1_config import H1Cfg, H1CfgPPO
 
+# Cfg is env config
+# PPOCfg is train cfg
 
 task_registry.register("pbrs:humanoid", Humanoid, HumanoidCfg(), HumanoidCfgPPO())
 

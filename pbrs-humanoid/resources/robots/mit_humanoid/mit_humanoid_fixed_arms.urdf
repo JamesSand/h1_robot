@@ -49,12 +49,12 @@ Simple Foot: foot approximated as single box-contact -->
         xyz="-0.065362  -0.000128  -0.063947"
         rpy="0 0 0" />
       <mass
-        value=" 0.842752" />
+        value="0.842752" />
       <inertia
-        ixx="0.001502 "
-        ixy="0.000004 "
+        ixx="0.001502"
+        ixy="0.000004"
         ixz="0.000533"
-        iyy="0.001361 "
+        iyy="0.001361"
         iyz="0.000000"
         izz="0.001170" />
     </inertial>
@@ -93,17 +93,17 @@ Simple Foot: foot approximated as single box-contact -->
     name="left_hip_abad">
     <inertial>
       <origin
-        xyz=" 0.067579  -0.013035 0.000132"
+        xyz="0.067579  -0.013035 0.000132"
         rpy="0 0 0" />
       <mass
         value="1.199631" />
       <inertia
-        ixx="0.001745 "
-        ixy="0.000003 "
-        ixz=" -0.000082"
-        iyy="0.003338 "
-        iyz=" -0.000010 "
-        izz=" 0.001951" />
+        ixx="0.001745"
+        ixy="0.000003"
+        ixz="-0.000082"
+        iyy="0.003338"
+        iyz="-0.000010"
+        izz="0.001951" />
     </inertial>
     <visual>
       <origin
@@ -140,17 +140,17 @@ Simple Foot: foot approximated as single box-contact -->
     name="left_upper_leg">
     <inertial>
       <origin
-        xyz=" -0.001100  0.026032 -0.078842"
+        xyz="-0.001100  0.026032 -0.078842"
         rpy="0 0 0" />
       <mass
         value="2.634789" />
       <inertia
-        ixx="0.024489 "
-        ixy="0.000068 "
-        ixz=" 0.000512 "
-        iyy="0.026049 "
-        iyz="0.002657 "
-        izz="0.003812 " />
+        ixx="0.024489"
+        ixy="0.000068"
+        ixz="0.000512"
+        iyy="0.026049"
+        iyz="0.002657"
+        izz="0.003812" />
     </inertial>
     <visual>
       <origin
@@ -198,12 +198,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.346291" />
       <inertia
-        ixx=" 0.002952 "
-        ixy=" 0.0"
-        ixz=" 0.000083"
-        iyy=" 0.002943"
-        iyz=" 0.000033"
-        izz=" 0.000238" />
+        ixx="0.002952"
+        ixy="0.0"
+        ixz="0.000083"
+        iyy="0.002943"
+        iyz="0.000033"
+        izz="0.000238" />
     </inertial>
     <visual>
       <origin
@@ -246,16 +246,16 @@ Simple Foot: foot approximated as single box-contact -->
     name="left_foot">
     <inertial>
       <origin
-        xyz="0.022696 0.0 -0.013879 "
+        xyz="0.022696 0.0 -0.013879"
         rpy="0 0 0" />
       <mass
-        value=" 0.279583" />
+        value="0.279583" />
       <inertia
         ixx="0.000092"
         ixy="0.0"
-        ixz="-0.000054 "
-        iyy="0.08 "
-        iyz="0.0 "
+        ixz="-0.000054"
+        iyy="0.08"
+        iyz="0.0"
         izz="0.000769" />
     </inertial>
     <!-- Foot inertia Iyy default: 0.000806
@@ -303,12 +303,12 @@ Simple Foot: foot approximated as single box-contact -->
         xyz="-0.065362  0.000128  -0.063947"
         rpy="0 0 0" />
       <mass
-        value=" 0.842752" />
+        value="0.842752" />
       <inertia
-        ixx="0.001502 "
-        ixy="-0.000004 "
+        ixx="0.001502"
+        ixy="-0.000004"
         ixz="-0.000533"
-        iyy="0.001361 "
+        iyy="0.001361"
         iyz="0.000000"
         izz="0.001170" />
     </inertial>
@@ -348,17 +348,17 @@ Simple Foot: foot approximated as single box-contact -->
     name="right_hip_abad">
     <inertial>
       <origin
-        xyz=" 0.067579  0.013035 0.000132"
+        xyz="0.067579  0.013035 0.000132"
         rpy="0 0 0" />
       <mass
         value="1.199631" />
       <inertia
-        ixx="0.001745 "
-        ixy="-0.000003 "
-        ixz=" 0.000082"
-        iyy="0.003338 "
-        iyz=" -0.000010 "
-        izz=" 0.001951" />
+        ixx="0.001745"
+        ixy="-0.000003"
+        ixz="0.000082"
+        iyy="0.003338"
+        iyz="-0.000010"
+        izz="0.001951" />
     </inertial>
     <visual>
       <origin
@@ -395,17 +395,17 @@ Simple Foot: foot approximated as single box-contact -->
     name="right_upper_leg">
     <inertial>
       <origin
-        xyz=" -0.001100  -0.026032 -0.078842"
+        xyz="-0.001100  -0.026032 -0.078842"
         rpy="0 0 0" />
       <mass
         value="2.634789" />
       <inertia
-        ixx="0.024489 "
-        ixy="-0.000068 "
-        ixz=" -0.000512 "
-        iyy="0.026049 "
-        iyz="0.002657 "
-        izz="0.003812 " />
+        ixx="0.024489"
+        ixy="-0.000068"
+        ixz="-0.000512"
+        iyy="0.026049"
+        iyz="0.002657"
+        izz="0.003812" />
     </inertial>
     <visual>
       <origin
@@ -453,12 +453,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.346291" />
       <inertia
-        ixx=" 0.002952 "
-        ixy=" 0.0"
-        ixz=" -0.000083"
-        iyy=" 0.002943"
-        iyz=" 0.000033"
-        izz=" 0.000238" />
+        ixx="0.002952"
+        ixy="0.0"
+        ixz="-0.000083"
+        iyy="0.002943"
+        iyz="0.000033"
+        izz="0.000238" />
     </inertial>
     <visual>
       <origin
@@ -501,16 +501,16 @@ Simple Foot: foot approximated as single box-contact -->
     name="right_foot">
     <inertial>
       <origin
-        xyz="0.022696 0.0 -0.013879 "
+        xyz="0.022696 0.0 -0.013879"
         rpy="0 0 0" />
       <mass
-        value=" 0.279583" />
+        value="0.279583" />
       <inertia
         ixx="0.000092"
         ixy="0.0"
-        ixz="0.000054 "
-        iyy="0.08 "
-        iyz="0.0 "
+        ixz="0.000054"
+        iyy="0.08"
+        iyz="0.0"
         izz="0.000769" />
     </inertial>
     <!-- Foot inertia Iyy default: 0.000806
@@ -561,12 +561,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.788506" />
       <inertia
-        ixx="0.001363 "
-        ixy="0.000024 "
-        ixz=" -0.000002 "
-        iyy="0.000759 "
-        iyz="  0.000001"
-        izz="  0.000866" />
+        ixx="0.001363"
+        ixy="0.000024"
+        ixz="-0.000002"
+        iyy="0.000759"
+        iyz="0.000001"
+        izz="0.000866" />
     </inertial>
     <visual>
       <origin
@@ -608,12 +608,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.801249" />
       <inertia
-        ixx=" 0.001136 "
-        ixy="0.000001 "
-        ixz="0.000016 "
-        iyy="0.001175 "
-        iyz=" 0.000001 "
-        izz="0.001241 " />
+        ixx="0.001136"
+        ixy="0.000001"
+        ixz="0.000016"
+        iyy="0.001175"
+        iyz="0.000001"
+        izz="0.001241" />
     </inertial>
     <visual>
       <origin
@@ -656,12 +656,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.905588" />
       <inertia
-        ixx=" 0.001353 "
-        ixy="0.000002 "
-        ixz="0.000001 "
-        iyy="0.001804 "
-        iyz="-0.000061 "
-        izz="0.000796 " />
+        ixx="0.001353"
+        ixy="0.000002"
+        ixz="0.000001"
+        iyy="0.001804"
+        iyz="-0.000061"
+        izz="0.000796" />
     </inertial>
     <visual>
       <origin
@@ -711,12 +711,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.348390" />
       <inertia
-        ixx="0.003400 "
-        ixy="0.0 "
-        ixz="-0.000049 "
-        iyy="0.003453 "
-        iyz="-0.000002 "
-        izz="0.000078 " />
+        ixx="0.003400"
+        ixy="0.0"
+        ixz="-0.000049"
+        iyy="0.003453"
+        iyz="-0.000002"
+        izz="0.000078" />
     </inertial>
     <visual>
       <origin
@@ -799,12 +799,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.788506" />
       <inertia
-        ixx="0.001363 "
-        ixy="-0.000024 "
-        ixz=" 0.000002 "
-        iyy="0.000759 "
-        iyz="  0.000001"
-        izz="  0.000866" />
+        ixx="0.001363"
+        ixy="-0.000024"
+        ixz="0.000002"
+        iyy="0.000759"
+        iyz="0.000001"
+        izz="0.000866" />
     </inertial>
     <visual>
       <origin
@@ -846,12 +846,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.801249" />
       <inertia
-        ixx=" 0.001136 "
-        ixy="-0.000001 "
-        ixz="-0.000016 "
-        iyy="0.001175 "
-        iyz=" 0.000001 "
-        izz="0.001241 " />
+        ixx="0.001136"
+        ixy="-0.000001"
+        ixz="-0.000016"
+        iyy="0.001175"
+        iyz="0.000001"
+        izz="0.001241" />
     </inertial>
     <visual>
       <origin
@@ -894,12 +894,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.905588" />
       <inertia
-        ixx=" 0.001353 "
-        ixy="-0.000002 "
-        ixz="-0.000001 "
-        iyy="0.001804 "
-        iyz="-0.000061 "
-        izz="0.000796 " />
+        ixx="0.001353"
+        ixy="-0.000002"
+        ixz="-0.000001"
+        iyy="0.001804"
+        iyz="-0.000061"
+        izz="0.000796" />
     </inertial>
     <visual>
       <origin
@@ -949,12 +949,12 @@ Simple Foot: foot approximated as single box-contact -->
       <mass
         value="0.348390" />
       <inertia
-        ixx="0.003400 "
-        ixy="0.0 "
-        ixz="-0.000049 "
-        iyy="0.003453 "
-        iyz="-0.000002 "
-        izz="0.000078 " />
+        ixx="0.003400"
+        ixy="0.0"
+        ixz="-0.000049"
+        iyy="0.003453"
+        iyz="-0.000002"
+        izz="0.000078" />
     </inertial>
     <visual>
       <origin

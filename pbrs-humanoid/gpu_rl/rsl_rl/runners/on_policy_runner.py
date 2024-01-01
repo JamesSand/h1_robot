@@ -236,6 +236,14 @@ class OnPolicyRunner:
             wandb_to_log['Perf/total_fps'] = fps
             wandb_to_log['Perf/collection time'] = locs['collection_time']
             wandb_to_log['Perf/learning_time'] = locs['learn_time']
+
+            # add more info to log
+            wandb_to_log["cmd_info/Value_function_loss"] = locs['mean_value_loss']
+            wandb_to_log["cmd_info/Surrogate_loss"] = locs['mean_surrogate_loss']
+            wandb_to_log["cmd_info/Mean_action_noise_std"] = mean_std.item()
+            wandb_to_log["cmd_info/Mean_reward"] = statistics.mean(locs['rewbuffer'])
+            wandb_to_log["cmd_info/Mean_episode_length"] = statistics.mean(locs['lenbuffer'])
+
             self.wandb.log(wandb_to_log, step=locs['it'])
 
         str = f" \033[1m Learning iteration {locs['it']}/{locs['tot_iter']} \033[0m "
