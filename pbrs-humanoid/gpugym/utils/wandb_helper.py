@@ -12,6 +12,7 @@ def recursive_value_find(cfg, location):
 def craft_log_config(env_cfg, train_cfg, wandb_cfg, what_to_log):
     for log_key in what_to_log:
         location = what_to_log[log_key]
+        
         if location[0] == 'train_cfg':
             wandb_cfg[log_key] = recursive_value_find(train_cfg, location[1:])
         elif location[0] == 'env_cfg':

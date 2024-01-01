@@ -86,39 +86,54 @@ class LeggedRobot(BaseTask):
         Args:
             actions (torch.Tensor): Tensor of shape (num_envs, num_actions_per_env)
         """
+        # check if disable actions
         if self.cfg.asset.disable_actions:
             self.actions[:] = 0.
         else:
             clip_actions = self.cfg.normalization.clip_actions
             self.actions = torch.clip(actions, -clip_actions, clip_actions).to(self.device)
+        
+        # for state reward cal, R(s_k)
         self.pre_physics_step()
         # step physics and render each frame
         self.render()
+        # control decimation is 4
         for _ in range(self.cfg.control.decimation):
-
+            # exp avg decay is None
             if self.cfg.control.exp_avg_decay:
                 self.action_avg = exp_avg_filter(self.actions, self.action_avg,
                                                 self.cfg.control.exp_avg_decay)
                 self.torques = self._compute_torques(self.action_avg).view(self.torques.shape)
             else:
+                # compute torq accord to given action
                 self.torques = self._compute_torques(self.actions).view(self.torques.shape)
 
+            # if disable torq
+            # here we dont disbale torq
             if self.cfg.asset.disable_motors:
                 self.torques[:] = 0.
 
+            # simulation step here
             self.gym.set_dof_actuation_force_tensor(self.sim, gymtorch.unwrap_tensor(self.torques))
             self.gym.simulate(self.sim)
+
             if self.device == 'cpu':
                 self.gym.fetch_results(self.sim, True)
             self.gym.refresh_dof_state_tensor(self.sim)
+
+        # check terminations, compute observations and rewards
         self.post_physics_step()
 
         # return clipped obs, clipped states (None), rewards, dones and infos
+        # clip obs is 100.
         clip_obs = self.cfg.normalization.clip_observations
         self.obs_buf = torch.clip(self.obs_buf, -clip_obs, clip_obs)
+
+        # self previledged obs buf is None
         if self.privileged_obs_buf is not None:
             self.privileged_obs_buf = torch.clip(self.privileged_obs_buf,
                                                  -clip_obs, clip_obs)
+            
         return self.obs_buf, self.privileged_obs_buf, self.rew_buf, \
             self.reset_buf, self.extras
 
@@ -143,12 +158,24 @@ class LeggedRobot(BaseTask):
         self.episode_length_buf += 1
         self.common_step_counter += 1
 
+        # quat_rotate_inverse is to calculate speed accord to world coord
+
+        # self.base_quat[:]: 4096 * 4
+        # self.base_lin_vel[:]: 4096 * 3
+        # self.base_ang_vel[:]: 4096 * 3
+        # self.projected_gravity[:]: 4096 * 3
+
+
         # prepare quantities
         self.base_quat[:] = self.root_states[:, 3:7]
         self.base_lin_vel[:] = quat_rotate_inverse(self.base_quat, self.root_states[:, 7:10])
         self.base_ang_vel[:] = quat_rotate_inverse(self.base_quat, self.root_states[:, 10:13])
         self.projected_gravity[:] = quat_rotate_inverse(self.base_quat, self.gravity_vec)
 
+        # # should check the tensor shape here
+        # breakpoint()
+
+        
         self._post_physics_step_callback()
 
         # compute observations, rewards, resets, ...
@@ -835,6 +862,10 @@ class LeggedRobot(BaseTask):
                 2.3 create actor with these properties and add them to the env
              3. Store indices of different bodies of the robot
         """
+
+        # print("processing asset")
+        # breakpoint()
+
         asset_path = self.cfg.asset.file.format(LEGGED_GYM_ROOT_DIR=LEGGED_GYM_ROOT_DIR)
         asset_root = os.path.dirname(asset_path)
         asset_file = os.path.basename(asset_path)
@@ -855,6 +886,11 @@ class LeggedRobot(BaseTask):
         asset_options.disable_gravity = self.cfg.asset.disable_gravity
 
         robot_asset = self.gym.load_asset(self.sim, asset_root, asset_file, asset_options)
+
+        print("loaded succ")
+
+        breakpoint()
+
         self.num_dof = self.gym.get_asset_dof_count(robot_asset)
         self.num_bodies = self.gym.get_asset_rigid_body_count(robot_asset)
         dof_props_asset = self.gym.get_asset_dof_properties(robot_asset)

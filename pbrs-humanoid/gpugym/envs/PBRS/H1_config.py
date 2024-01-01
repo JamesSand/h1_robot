@@ -8,7 +8,8 @@ from gpugym.envs.base.legged_robot_config \
     import LeggedRobotCfg, LeggedRobotCfgPPO
 
 
-class HumanoidCfg(LeggedRobotCfg):
+# class HumanoidCfg(LeggedRobotCfg):
+class H1Cfg(LeggedRobotCfg):
     class env(LeggedRobotCfg.env):
         num_envs = 4096
         num_observations = 38
@@ -161,17 +162,39 @@ class HumanoidCfg(LeggedRobotCfg):
         max_push_vel_xy = 0.5
 
     class asset(LeggedRobotCfg.asset):
+
         file = '{LEGGED_GYM_ROOT_DIR}'\
-            '/resources/robots/mit_humanoid/mit_humanoid_fixed_arms.urdf'
+            '/resources/h1_robot_res/h1_v1.urdf'
+
+        # file = '{LEGGED_GYM_ROOT_DIR}'\
+        #     '/resources/robots/mit_humanoid/mit_humanoid_fixed_arms.urdf'
+
+
+
         keypoints = ["base"]
         end_effectors = ['left_foot', 'right_foot']
 
         # seems this param is useless
         foot_name = 'foot'
 
+        # # terminate after contacts upper body
+        # terminate_after_contacts_on = [
+        #     'base',
+        #     'left_upper_leg',
+        #     'left_lower_leg',
+        #     'right_upper_leg',
+        #     'right_lower_leg',
+        #     'left_upper_arm',
+        #     'right_upper_arm',
+        #     'left_lower_arm',
+        #     'right_lower_arm',
+        #     'left_hand',
+        #     'right_hand',
+        # ]
+
         # terminate after contacts upper body
         terminate_after_contacts_on = [
-            'base',
+            'pelvis',
             'left_upper_leg',
             'left_lower_leg',
             'right_upper_leg',
@@ -291,7 +314,7 @@ class HumanoidCfg(LeggedRobotCfg):
             max_depenetration_velocity = 10.0
 
 
-class HumanoidCfgPPO(LeggedRobotCfgPPO):
+class H1CfgPPO(LeggedRobotCfgPPO):
     do_wandb = True
     seed = -1
 

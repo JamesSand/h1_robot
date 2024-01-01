@@ -10,7 +10,7 @@ from gpugym.utils.math import *
 from gpugym.envs import LeggedRobot
 
 
-class Humanoid(LeggedRobot):
+class H1(LeggedRobot):
 
     def _custom_init(self, cfg):
         self.dt_step = self.cfg.sim.dt * self.cfg.control.decimation

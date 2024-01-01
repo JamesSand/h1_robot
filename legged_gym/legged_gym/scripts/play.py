@@ -42,14 +42,23 @@ import torch
 def play(args):
     env_cfg, train_cfg = task_registry.get_cfgs(name=args.task)
     # override some parameters for testing
-    env_cfg.env.num_envs = min(env_cfg.env.num_envs, 50)
+
+    # what if i set here to 2
+    test_num_envs = 50
+    # test_num_envs = 2
+    print("test num envs: ", test_num_envs)
+
+
+    env_cfg.env.num_envs = min(env_cfg.env.num_envs, test_num_envs)
+
+    # env_cfg: <class 'legged_gym.envs.anymal_c.flat.anymal_c_flat_config.AnymalCFlatCfg'>
     env_cfg.terrain.num_rows = 5
     env_cfg.terrain.num_cols = 5
     env_cfg.terrain.curriculum = False
     env_cfg.noise.add_noise = False
     env_cfg.domain_rand.randomize_friction = False
     env_cfg.domain_rand.push_robots = False
-
+    # env: <class 'legged_gym.envs.anymal_c.anymal.Anymal'>
     # prepare environment
     env, _ = task_registry.make_env(name=args.task, args=args, env_cfg=env_cfg)
     obs = env.get_observations()
@@ -73,9 +82,14 @@ def play(args):
     camera_vel = np.array([1., 1., 0.])
     camera_direction = np.array(env_cfg.viewer.lookat) - np.array(env_cfg.viewer.pos)
     img_idx = 0
-
+    # int(env.max_episode_length) = 1001
     for i in range(10*int(env.max_episode_length)):
+        # obs torch tensor: 50 * 48, num_envs * obs_dim
+        # breakpoint()
         actions = policy(obs.detach())
+
+        breakpoint()
+
         obs, _, rews, dones, infos = env.step(actions.detach())
         if RECORD_FRAMES:
             if i % 2:
@@ -115,7 +129,10 @@ def play(args):
 
 if __name__ == '__main__':
     EXPORT_POLICY = True
-    RECORD_FRAMES = False
-    MOVE_CAMERA = False
+    RECORD_FRAMES = True
+    MOVE_CAMERA = True
+
+
+
     args = get_args()
     play(args)

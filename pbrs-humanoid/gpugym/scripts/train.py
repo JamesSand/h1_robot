@@ -40,6 +40,20 @@ import torch
 
 import wandb
 
+
+# def get_attributes_as_dict(obj):
+#     # class ls
+#     all_attributes = vars(obj).copy()
+
+#     for sub_cls_name in all_attributes:
+#         all_attributes[sub_cls_name] = get_attributes_as_dict(all_attributes[sub_cls_name])
+
+#     # breakpoint()
+
+#     all_attributes.update(vars(obj.__class__))
+#     filtered_attributes = {key: value for key, value in all_attributes.items() if not key.startswith('__')}
+#     return filtered_attributes
+
 def train(args):
     env, env_cfg = task_registry.make_env(name=args.task, args=args)
     ppo_runner, train_cfg = task_registry.make_alg_runner(env=env, name=args.task, args=args)
@@ -60,14 +74,25 @@ def train(args):
     if do_wandb:
         wandb.config = {}
 
-        if hasattr(train_cfg, 'wandb'):
-            what_to_log = train_cfg.wandb.what_to_log
-            wandb_helper.craft_log_config(env_cfg, train_cfg, wandb.config, what_to_log)
+        # train_cfg_dict = get_attributes_as_dict(train_cfg)
+
+        # # x = vars(train_cfg)
+
+        # env_cfg_dict = get_attributes_as_dict(env_cfg)
+
+        # print(vars(train_cfg))
+        # x = train_cfg.__dict__
+        # if hasattr(train_cfg, 'wandb'):
+        #     what_to_log = train_cfg.wandb.what_to_log
+        #     wandb_helper.craft_log_config(env_cfg, train_cfg, wandb.config, what_to_log)
 
         print(f'Received WandB project name: {args.wandb_project}\nReceived WandB entitiy name: {args.wandb_entity}\n')
+
+        # breakpoint()
+
         wandb.init(project=args.wandb_project,
                    entity=args.wandb_entity,
-                   group=args.wandb_group,
+                #    group=args.wandb_group,
                    config=wandb.config,
                    name=experiment_name)
 
