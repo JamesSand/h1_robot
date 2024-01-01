@@ -148,6 +148,10 @@ class TaskRegistry():
         runner = OnPolicyRunner(env, train_cfg_dict, log_dir, device=args.rl_device)
         #save resume path before creating a new log_dir
         resume = train_cfg.runner.resume
+
+        # print(resume)
+        # breakpoint()
+
         if resume:
             # load previously trained model
             resume_path = get_load_path(log_root, load_run=train_cfg.runner.load_run, checkpoint=train_cfg.runner.checkpoint)

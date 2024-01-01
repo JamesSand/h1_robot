@@ -134,6 +134,7 @@ class LeggedRobot(BaseTask):
             self.privileged_obs_buf = torch.clip(self.privileged_obs_buf,
                                                  -clip_obs, clip_obs)
             
+        # obs, privileged_obs, rewards, dones, infos
         return self.obs_buf, self.privileged_obs_buf, self.rew_buf, \
             self.reset_buf, self.extras
 
@@ -252,12 +253,20 @@ class LeggedRobot(BaseTask):
             Calls each reward function which had a non-zero scale (processed in self._prepare_reward_function())
             adds each terms to the episode sums and to the total reward
         """
+
+        # self.reward_name
+        # ['action_rate', 'action_rate2', 'baseHeight_pb', 'dof_pos_limits', 'jointReg_pb', 'ori_pb', 'torque_limits', 'torques', 'tracking_ang_vel', 'tracking_lin_vel']
+
         self.rew_buf[:] = 0.
         for i in range(len(self.reward_functions)):
             name = self.reward_names[i]
             rew = self.reward_functions[i]() * self.reward_scales[name]
             self.rew_buf += rew
             self.episode_sums[name] += rew
+
+            breakpoint()
+            print()
+
         if self.cfg.rewards.only_positive_rewards:
             self.rew_buf[:] = torch.clip(self.rew_buf[:], min=0.)
         # add termination reward after clipping
@@ -916,16 +925,16 @@ class LeggedRobot(BaseTask):
         base_init_state_list = self.cfg.init_state.pos + self.cfg.init_state.rot + self.cfg.init_state.lin_vel + self.cfg.init_state.ang_vel
         
 
-        print("feet names")
-        print(feet_names)
+        # print("feet names")
+        # print(feet_names)
 
-        print("penalized contact names")
-        print(penalized_contact_names)
+        # print("penalized contact names")
+        # print(penalized_contact_names)
 
-        print("termination contact names")
-        print(termination_contact_names)
+        # print("termination contact names")
+        # print(termination_contact_names)
         
-        breakpoint()
+        # breakpoint()
         
         self.base_init_state = to_torch(base_init_state_list, device=self.device, requires_grad=False)
         start_pose = gymapi.Transform()

@@ -6,7 +6,7 @@ export CUDA_VISIBLE_DEVICES=7
 #set envs
 export LD_LIBRARY_PATH=/home/shawn/anaconda3/envs/pbrs/lib
 
-RUN_NAME="pbrs_add_comments_run"
+RUN_NAME="pbrs_mit_comp_bench"
 PROJ_NAME="pbrs"
 
 

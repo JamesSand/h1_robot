@@ -73,73 +73,142 @@ class H1Cfg(LeggedRobotCfg):
             [-.5, .5]
         ]
 
-        default_joint_angles = {
-            'left_hip_yaw': 0.,
-            'left_hip_abad': 0.,
-            'left_hip_pitch': -0.2,
-            'left_knee': 0.25,  # 0.6
-            'left_ankle': 0.0,
+        # default_joint_angles = {
+        #     'left_hip_yaw': 0.,
+        #     'left_hip_abad': 0.,
+        #     'left_hip_pitch': -0.2,
+        #     'left_knee': 0.25,  # 0.6
+        #     'left_ankle': 0.0,
 
-            'right_hip_yaw': 0.,
-            'right_hip_abad': 0.,
-            'right_hip_pitch': -0.2,
-            'right_knee': 0.25,  # 0.6
-            'right_ankle': 0.0,
+        #     'right_hip_yaw': 0.,
+        #     'right_hip_abad': 0.,
+        #     'right_hip_pitch': -0.2,
+        #     'right_knee': 0.25,  # 0.6
+        #     'right_ankle': 0.0,
+        # }
+
+        default_joint_angles = {
+            'left_hip_yaw_joint': 0.,
+            'left_hip_roll_joint': 0.,
+            'left_hip_pitch_joint': -0.2,
+            'left_knee_joint': 0.25,  # 0.6
+            'left_ankle_joint': 0.0,
+
+            'right_hip_yaw_joint': 0.,
+            'right_hip_roll_joint': 0.,
+            'right_hip_pitch_joint': -0.2,
+            'right_knee_joint': 0.25,  # 0.6
+            'right_ankle_joint': 0.0,
         }
+
+        # dof_pos_range = {
+        #     'left_hip_yaw': [-0.1, 0.1],
+        #     'left_hip_abad': [-0.2, 0.2],
+        #     'left_hip_pitch': [-0.2, 0.2],
+        #     'left_knee': [0.6, 0.7],
+        #     'left_ankle': [-0.3, 0.3],
+
+        #     'right_hip_yaw': [-0.1, 0.1],
+        #     'right_hip_abad': [-0.2, 0.2],
+        #     'right_hip_pitch': [-0.2, 0.2],
+        #     'right_knee': [0.6, 0.7],
+        #     'right_ankle': [-0.3, 0.3],
+        # }
 
         dof_pos_range = {
-            'left_hip_yaw': [-0.1, 0.1],
-            'left_hip_abad': [-0.2, 0.2],
-            'left_hip_pitch': [-0.2, 0.2],
-            'left_knee': [0.6, 0.7],
-            'left_ankle': [-0.3, 0.3],
+            'left_hip_yaw_joint': [-0.1, 0.1],
+            'left_hip_roll_joint': [-0.2, 0.2],
+            'left_hip_pitch_joint': [-0.2, 0.2],
+            'left_knee_joint': [0.6, 0.7],
+            'left_ankle_joint': [-0.3, 0.3],
 
-            'right_hip_yaw': [-0.1, 0.1],
-            'right_hip_abad': [-0.2, 0.2],
-            'right_hip_pitch': [-0.2, 0.2],
-            'right_knee': [0.6, 0.7],
-            'right_ankle': [-0.3, 0.3],
+            'right_hip_yaw_joint': [-0.1, 0.1],
+            'right_hip_roll_joint': [-0.2, 0.2],
+            'right_hip_pitch_joint': [-0.2, 0.2],
+            'right_knee_joint': [0.6, 0.7],
+            'right_ankle_joint': [-0.3, 0.3],
         }
 
-        dof_vel_range = {
-            'left_hip_yaw': [-0.1, 0.1],
-            'left_hip_abad': [-0.1, 0.1],
-            'left_hip_pitch': [-0.1, 0.1],
-            'left_knee': [-0.1, 0.1],
-            'left_ankle': [-0.1, 0.1],
+        # dof_vel_range = {
+        #     'left_hip_yaw': [-0.1, 0.1],
+        #     'left_hip_abad': [-0.1, 0.1],
+        #     'left_hip_pitch': [-0.1, 0.1],
+        #     'left_knee': [-0.1, 0.1],
+        #     'left_ankle': [-0.1, 0.1],
 
-            'right_hip_yaw': [-0.1, 0.1],
-            'right_hip_abad': [-0.1, 0.1],
-            'right_hip_pitch': [-0.1, 0.1],
-            'right_knee': [-0.1, 0.1],
-            'right_ankle': [-0.1, 0.1],
+        #     'right_hip_yaw': [-0.1, 0.1],
+        #     'right_hip_abad': [-0.1, 0.1],
+        #     'right_hip_pitch': [-0.1, 0.1],
+        #     'right_knee': [-0.1, 0.1],
+        #     'right_ankle': [-0.1, 0.1],
+        # }
+
+        dof_vel_range = {
+            'left_hip_yaw_joint': [-0.1, 0.1],
+            'left_hip_roll_joint': [-0.1, 0.1],
+            'left_hip_pitch_joint': [-0.1, 0.1],
+            'left_knee_joint': [-0.1, 0.1],
+            'left_ankle_joint': [-0.1, 0.1],
+
+            'right_hip_yaw_joint': [-0.1, 0.1],
+            'right_hip_roll_joint': [-0.1, 0.1],
+            'right_hip_pitch_joint': [-0.1, 0.1],
+            'right_knee_joint': [-0.1, 0.1],
+            'right_ankle_joint': [-0.1, 0.1],
         }
 
     class control(LeggedRobotCfg.control):
         # stiffness and damping for joints
+        # stiffness = {
+        #     'left_hip_yaw': 30.,
+        #     'left_hip_abad': 30.,
+        #     'left_hip_pitch': 30.,
+        #     'left_knee': 30.,
+        #     'left_ankle': 30.,
+        #     'right_hip_yaw': 30.,
+        #     'right_hip_abad': 30.,
+        #     'right_hip_pitch': 30.,
+        #     'right_knee': 30.,
+        #     'right_ankle': 30.,
+        # }
+
         stiffness = {
-            'left_hip_yaw': 30.,
-            'left_hip_abad': 30.,
-            'left_hip_pitch': 30.,
-            'left_knee': 30.,
-            'left_ankle': 30.,
-            'right_hip_yaw': 30.,
-            'right_hip_abad': 30.,
-            'right_hip_pitch': 30.,
-            'right_knee': 30.,
-            'right_ankle': 30.,
+            'left_hip_yaw_joint': 30.,
+            'left_hip_roll_joint': 30.,
+            'left_hip_pitch_joint': 30.,
+            'left_knee_joint': 30.,
+            'left_ankle_joint': 30.,
+            'right_hip_yaw_joint': 30.,
+            'right_hip_roll_joint': 30.,
+            'right_hip_pitch_joint': 30.,
+            'right_knee_joint': 30.,
+            'right_ankle_joint': 30.,
         }
+
+        # damping = {
+        #     'left_hip_yaw': 5.,
+        #     'left_hip_abad': 5.,
+        #     'left_hip_pitch': 5.,
+        #     'left_knee': 5.,
+        #     'left_ankle': 5.,
+        #     'right_hip_yaw': 5.,
+        #     'right_hip_abad': 5.,
+        #     'right_hip_pitch': 5.,
+        #     'right_knee': 5.,
+        #     'right_ankle': 5.
+        # }
+
         damping = {
-            'left_hip_yaw': 5.,
-            'left_hip_abad': 5.,
-            'left_hip_pitch': 5.,
-            'left_knee': 5.,
-            'left_ankle': 5.,
-            'right_hip_yaw': 5.,
-            'right_hip_abad': 5.,
-            'right_hip_pitch': 5.,
-            'right_knee': 5.,
-            'right_ankle': 5.
+            'left_hip_yaw_joint': 5.,
+            'left_hip_roll_joint': 5.,
+            'left_hip_pitch_joint': 5.,
+            'left_knee_joint': 5.,
+            'left_ankle_joint': 5.,
+            'right_hip_yaw_joint': 5.,
+            'right_hip_roll_joint': 5.,
+            'right_hip_pitch_joint': 5.,
+            'right_knee_joint': 5.,
+            'right_ankle_joint': 5.
         }
 
         action_scale = 1.0
@@ -164,7 +233,12 @@ class H1Cfg(LeggedRobotCfg):
     class asset(LeggedRobotCfg.asset):
 
         file = '{LEGGED_GYM_ROOT_DIR}'\
-            '/resources/h1_robot_res/h1_v1.urdf'
+            '/resources/h1_robot_res/h1_v2.urdf'
+
+        print("-" * 50)
+        print("using urdf file")
+        print(file)
+        print("-" * 50)
 
         # file = '{LEGGED_GYM_ROOT_DIR}'\
         #     '/resources/robots/mit_humanoid/mit_humanoid_fixed_arms.urdf'
@@ -357,6 +431,6 @@ class H1CfgPPO(LeggedRobotCfgPPO):
         plot_parameter_gradients = False
 
         run_name = 'ICRA2023'
-        experiment_name = 'PBRS_HumanoidLocomotion'
+        experiment_name = 'PBRS_H1'
 
     

@@ -193,6 +193,7 @@ class OnPolicyRunner:
                 wandb_to_log['Episode/' + key] = value
                 wandb_to_log['Episode/Total_reward'] += value
                 ep_string += f"""{f'Mean episode {key}:':>{pad}} {value:.4f}\n"""
+        
         mean_std = self.alg.actor_critic.std.mean()
         fps = int(self.num_steps_per_env * self.env.num_envs / (locs['collection_time'] + locs['learn_time']))
 
@@ -269,6 +270,10 @@ class OnPolicyRunner:
                        f"""{'Total time:':>{pad}} {self.tot_time:.2f}s\n"""
                        f"""{'ETA:':>{pad}} {self.tot_time / (locs['it'] + 1) * (
                                locs['num_learning_iterations'] - locs['it']):.1f}s\n""")
+
+        # add cur iter
+        log_string += f"""{'Current iteration:':>{pad}} {locs['it']}\n"""
+
         print(log_string)
 
     def save(self, path, infos=None):

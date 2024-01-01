@@ -3,10 +3,9 @@ export CUDA_VISIBLE_DEVICES=1
 
 # pbrs train
 
-python gpugym/scripts/train.py --task=pbrs:H1 --headless 
+# python gpugym/scripts/train.py --task=pbrs:H1 --headless 
 
-
-# python gpugym/scripts/train.py --task=pbrs:humanoid --headless 
+python gpugym/scripts/train.py --task=pbrs:humanoid --headless 
 
 
 
