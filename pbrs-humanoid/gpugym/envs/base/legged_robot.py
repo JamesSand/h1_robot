@@ -887,9 +887,9 @@ class LeggedRobot(BaseTask):
 
         robot_asset = self.gym.load_asset(self.sim, asset_root, asset_file, asset_options)
 
-        print("loaded succ")
+        # print("loaded succ")
 
-        breakpoint()
+        # breakpoint()
 
         self.num_dof = self.gym.get_asset_dof_count(robot_asset)
         self.num_bodies = self.gym.get_asset_rigid_body_count(robot_asset)
@@ -899,9 +899,13 @@ class LeggedRobot(BaseTask):
         # save body names from the asset
         body_names = self.gym.get_asset_rigid_body_names(robot_asset)
         self.dof_names = self.gym.get_asset_dof_names(robot_asset)
+
         self.num_bodies = len(body_names)
         # self.num_dofs = len(self.dof_names)  # ! replaced with num_dof
         feet_names = [s for s in body_names if self.cfg.asset.foot_name in s]
+
+        # breakpoint()
+
         penalized_contact_names = []
         for name in self.cfg.asset.penalize_contacts_on:
             penalized_contact_names.extend([s for s in body_names if name in s])
@@ -910,6 +914,19 @@ class LeggedRobot(BaseTask):
             termination_contact_names.extend([s for s in body_names if name in s])
 
         base_init_state_list = self.cfg.init_state.pos + self.cfg.init_state.rot + self.cfg.init_state.lin_vel + self.cfg.init_state.ang_vel
+        
+
+        print("feet names")
+        print(feet_names)
+
+        print("penalized contact names")
+        print(penalized_contact_names)
+
+        print("termination contact names")
+        print(termination_contact_names)
+        
+        breakpoint()
+        
         self.base_init_state = to_torch(base_init_state_list, device=self.device, requires_grad=False)
         start_pose = gymapi.Transform()
         start_pose.p = gymapi.Vec3(*self.base_init_state[:3])

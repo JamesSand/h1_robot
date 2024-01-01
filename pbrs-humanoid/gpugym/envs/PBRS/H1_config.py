@@ -172,10 +172,16 @@ class H1Cfg(LeggedRobotCfg):
 
 
         keypoints = ["base"]
-        end_effectors = ['left_foot', 'right_foot']
+
+        end_effectors = ["left_ankle_link", "right_ankle_link"]
+
+        # end_effectors = ['left_foot', 'right_foot']
 
         # seems this param is useless
-        foot_name = 'foot'
+
+        # maybe change to ankle?
+        foot_name = 'ankle_link'
+
 
         # # terminate after contacts upper body
         # terminate_after_contacts_on = [
@@ -195,16 +201,16 @@ class H1Cfg(LeggedRobotCfg):
         # terminate after contacts upper body
         terminate_after_contacts_on = [
             'pelvis',
-            'left_upper_leg',
-            'left_lower_leg',
-            'right_upper_leg',
-            'right_lower_leg',
-            'left_upper_arm',
-            'right_upper_arm',
-            'left_lower_arm',
-            'right_lower_arm',
-            'left_hand',
-            'right_hand',
+            "left_knee_link",
+            "left_hip_pitch_link",
+            "right_knee_link",
+            "right_hip_pitch_link",
+
+            "left_elbow_link",
+            "left_shoulder_yaw_link",
+            "right_elbow_link",
+            "right_shoulder_yaw_link",
+
         ]
 
         # additional disable actions and disable motors
