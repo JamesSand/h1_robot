@@ -21,6 +21,22 @@ class Humanoid(LeggedRobot):
         self.eps = 0.2
         self.phase_freq = 1.
 
+        if hasattr(cfg, 'is_play_mode'):
+            print("-" * 50)
+            print("is_play_mode", cfg.is_play_mode)
+            print("-" * 50)
+            self.is_play_mode = cfg.is_play_mode
+        else:
+            print("-" * 50)
+            print("humanoid.py: _custom_init: cfg.is_play_mode is not defined")
+            print("-" * 50)
+
+        # print("humanoid custom init")
+        # breakpoint()
+        # print()
+
+        
+
     def compute_observations(self):
         base_z = self.root_states[:, 2].unsqueeze(1)*self.obs_scales.base_z
         in_contact = torch.gt(
@@ -28,12 +44,69 @@ class Humanoid(LeggedRobot):
         in_contact = torch.cat(
             (in_contact[:, 0].unsqueeze(1), in_contact[:, 1].unsqueeze(1)),
             dim=1)
-        self.commands[:, 0:2] = torch.where(
-            torch.norm(self.commands[:, 0:2], dim=-1, keepdim=True) < 0.5,
-            0., self.commands[:, 0:2].double()).float()
-        self.commands[:, 2:3] = torch.where(
-            torch.abs(self.commands[:, 2:3]) < 0.5,
-            0., self.commands[:, 2:3].double()).float()
+
+        # calculate vel command here
+
+        # breakpoint()
+        # self.commands.shape = 4096 * 4
+
+        if self.is_play_mode:
+            tol_idx = torch.arange(0, self.num_envs, device=self.device)
+            base = self.num_envs // 4
+            idx1 = tol_idx[0:base]
+            idx2 = tol_idx[base:2*base]
+            idx3 = tol_idx[2*base:3*base]
+            idx4 = tol_idx[3*base:4*base]
+
+            # reset all commands
+            self.commands = torch.zeros_like(self.commands)
+
+            # vel x max
+            vel_xmax = self.command_ranges["lin_vel_x"][1]
+            self.commands[idx1, 0] = torch_rand_float(vel_xmax, vel_xmax, (len(idx1), 1), device=self.device).squeeze(1)
+
+            # vel y min
+            vel_ymin = self.command_ranges["lin_vel_y"][0]
+            self.commands[idx2, 1] = torch_rand_float(vel_ymin, vel_ymin, (len(idx2), 1), device=self.device).squeeze(1)
+
+            # vel y max
+            vel_ymax = self.command_ranges["lin_vel_y"][1]
+            self.commands[idx3, 1] = torch_rand_float(vel_ymax, vel_ymax, (len(idx3), 1), device=self.device).squeeze(1)
+
+            # ang max
+            ang_max = self.command_ranges["ang_vel_yaw"][1]
+            self.commands[idx4, 2] = torch_rand_float(ang_max, ang_max, (len(idx4), 1), device=self.device).squeeze(1)
+
+            # if vel < 0.5, cut
+            # if ang < 0.5, cut
+
+            # set small command to zero
+            self.commands[:, 0:2] = torch.where(
+                torch.norm(self.commands[:, 0:2], dim=-1, keepdim=True) < 0.5,
+                0., self.commands[:, 0:2].double()).float()
+            self.commands[:, 2:3] = torch.where(
+                torch.abs(self.commands[:, 2:3]) < 0.5,
+                0., self.commands[:, 2:3].double()).float()
+
+            # # check if all zero
+            # for idx in range(4)
+
+
+            # specify commands
+            # breakpoint()
+            # print()
+            # pass
+        else:
+            # train mode, random command, and cut small commands
+
+            # set small command to zero
+            self.commands[:, 0:2] = torch.where(
+                torch.norm(self.commands[:, 0:2], dim=-1, keepdim=True) < 0.5,
+                0., self.commands[:, 0:2].double()).float()
+            self.commands[:, 2:3] = torch.where(
+                torch.abs(self.commands[:, 2:3]) < 0.5,
+                0., self.commands[:, 2:3].double()).float()
+    
         self.obs_buf = torch.cat((
             base_z,                                 # [1] Base height
             self.base_lin_vel,                      # [3] Base linear velocity
@@ -89,7 +162,7 @@ class Humanoid(LeggedRobot):
             # print(self.commands)
             pass  # when the joystick is used, the self.commands variables are overridden
         else:
-            # what is resampling commands?
+            # random command for each epoch
             self._resample_commands(env_ids)
             if (self.cfg.domain_rand.push_robots and
                 (self.common_step_counter

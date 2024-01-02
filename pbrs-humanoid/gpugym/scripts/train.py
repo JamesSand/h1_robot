@@ -80,7 +80,9 @@ def train(args):
     do_wandb = do_wandb and None not in (args.wandb_project, args.wandb_entity)
 
     if do_wandb:
-        wandb.config = {}
+        # wandb.config = {}
+
+        wandb.config = args
 
         print(f'Received WandB project name: {args.wandb_project}\nReceived WandB entitiy name: {args.wandb_entity}\n')
 

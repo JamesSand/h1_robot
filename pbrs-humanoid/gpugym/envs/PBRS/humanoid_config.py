@@ -9,6 +9,9 @@ from gpugym.envs.base.legged_robot_config \
 
 
 class HumanoidCfg(LeggedRobotCfg):
+
+    is_play_mode = False
+
     class env(LeggedRobotCfg.env):
         num_envs = 4096
         num_observations = 38
@@ -214,6 +217,8 @@ class HumanoidCfg(LeggedRobotCfg):
 
         # negative total rewards clipped at zero (avoids early termination)
         only_positive_rewards = False
+        # tracking sigma is for 
+        # height reward, linear reward, angular reward
         tracking_sigma = 0.5 # tracking reward = exp(-error^2/sigma)
 
         class scales(LeggedRobotCfg.rewards.scales):

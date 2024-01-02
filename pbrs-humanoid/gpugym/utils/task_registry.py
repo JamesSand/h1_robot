@@ -92,14 +92,27 @@ class TaskRegistry():
         # override cfg from args (if specified)
         env_cfg, _ = update_cfg_from_args(env_cfg, None, args)
         set_seed(env_cfg.seed)
+
         # parse sim params (convert to dict first)
         sim_params = {"sim": class_to_dict(env_cfg.sim)}
         sim_params = parse_sim_params(args, sim_params)
+
+        # print("-" * 50)
+        # print("after sim params")
+        # print("-" * 50)
+
+        # breakpoint()
+
         env = task_class(   cfg=env_cfg,
                             sim_params=sim_params,
                             physics_engine=args.physics_engine,
                             sim_device=args.sim_device,
                             headless=args.headless)
+
+        # print("-" * 50)
+        # print("before ret")
+        # print("-" * 50)
+
         return env, env_cfg
 
     def make_alg_runner(self, env, name=None, args=None, train_cfg=None, log_root="default") -> Tuple[OnPolicyRunner, LeggedRobotCfgPPO]:
@@ -160,8 +173,12 @@ class TaskRegistry():
 
         if resume:
             # load previously trained model
+            # load run -1, runner checkpoint -1
             resume_path = get_load_path(log_root, load_run=train_cfg.runner.load_run, checkpoint=train_cfg.runner.checkpoint)
             print(f"Loading model from: {resume_path}")
+
+            
+
             runner.load(resume_path)
         return runner, train_cfg
 

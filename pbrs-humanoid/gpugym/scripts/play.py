@@ -42,7 +42,7 @@ import torch
 def play(args):
     env_cfg, train_cfg = task_registry.get_cfgs(name=args.task)
     # override some parameters for testing
-    env_cfg.env.num_envs = min(env_cfg.env.num_envs, 16)
+    env_cfg.env.num_envs = min(env_cfg.env.num_envs, 16) # playing with only 16 robot
     env_cfg.terrain.num_rows = 5
     env_cfg.terrain.num_cols = 5
     env_cfg.terrain.curriculum = False
@@ -53,8 +53,26 @@ def play(args):
     env_cfg.domain_rand.max_push_vel_xy = 1.0
     env_cfg.init_state.reset_ratio = 0.8
 
+
+    # set env is_play_mode True
+    if hasattr(env_cfg, 'is_play_mode'):
+        env_cfg.is_play_mode = True
+    else:
+        print("-" * 50)
+        print("env_cfg.is_play_mode is not defined")
+        print("-" * 50)
+
+    # print("-" * 50)
+    # print("before mk env")
+    # print("-" * 50)
+
     # prepare environment
     env, _ = task_registry.make_env(name=args.task, args=args, env_cfg=env_cfg)
+
+    # print("-" * 50)
+    # print("make env done")
+    # print("-" * 50)
+
     obs = env.get_observations()
 
     # load policy
@@ -91,8 +109,17 @@ def play(args):
         obs, _, rews, dones, infos = env.step(actions.detach())
         if RECORD_FRAMES:
             if i % 2:
-                filename = os.path.join(LEGGED_GYM_ROOT_DIR, 'logs', train_cfg.runner.experiment_name, 'exported', 'frames', f"{img_idx}.png")
+
+                file_dir = os.path.join(LEGGED_GYM_ROOT_DIR, 'logs', train_cfg.runner.experiment_name, 'exported', 'frames')
+                os.makedirs(file_dir, exist_ok=True)
+
+                filename = os.path.join(file_dir, f"{img_idx}.png")
+
+                # filename = os.path.join(LEGGED_GYM_ROOT_DIR, 'logs', train_cfg.runner.experiment_name, 'exported', 'frames', f"{img_idx}.png")
+                
+                
                 env.gym.write_viewer_image_to_file(env.viewer, filename)
+                print("Saved frame: ", filename)
                 img_idx += 1
         if MOVE_CAMERA:
             camera_position += camera_vel * env.dt
@@ -129,7 +156,14 @@ def play(args):
 if __name__ == '__main__':
     EXPORT_POLICY = True
     EXPORT_CRITIC = True
+    # RECORD_FRAMES = True
     RECORD_FRAMES = False
     MOVE_CAMERA = False
+
+    print("-" * 50)
+    print("Record frames: ", RECORD_FRAMES)
+    print("Move camera: ", MOVE_CAMERA)
+    print("-" * 50)
+
     args = get_args()
     play(args)

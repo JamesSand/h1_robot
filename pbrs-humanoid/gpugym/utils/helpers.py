@@ -144,6 +144,15 @@ def update_cfg_from_args(env_cfg, cfg_train, args):
 
             env_cfg.asset.file = args.urdf_file
 
+        if args.base_height_target is not None:
+
+            print("-" * 50)
+            print("using base height")
+            print(args.base_height_target)
+            print("-" * 50)
+
+            env_cfg.rewards.base_height_target = args.base_height_target
+
         if args.seed is not None:
             env_cfg.seed = args.seed
         
@@ -188,6 +197,8 @@ def get_args():
 
         # urdf file path
         {"name": "--urdf_file", "type": str, "help": "urdf file path"},
+        # base height
+        {"name": "--base_height_target", "type": float, "help": "base height"},
 
         {"name": "--reward_scale", "type": float, "help": "value to override reward scale with (which reward hard-coded in train.py)"}, # ! hacky AF
         {"name": "--pbrs", "type": int, "help": "pbrs or not (1, 0))"}, # ! hacky AF
